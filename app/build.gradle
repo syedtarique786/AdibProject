@@ -1,0 +1,121 @@
+//Key and type definitions
+def BOOLEAN = "boolean"
+def STRING = "String"
+def TRUE = "true"
+def FALSE = "false"
+def NYTIME_API_KEY = "NYTIME_API_KEY"
+def NYTIME_BASE_URI = "NYTIME_BASE_URI"
+def NYTIME_SECTION_PATH = "NYTIME_SECTION_PATH"
+
+def ADIB_NYTIME_API_KEY_STAGING = "\"b5a1ed6a18bf487e8eb174ed2e626c13\""
+def ADIB_NYTIME_BASE_URI_STAGING = "\"http://api.nytimes.com/svc/mostpopular/v2/\""
+def ADIB_NYTIME_SECTION_PATH_STAGING = "\"all-sections\""
+
+def ADIB_NYTIME_API_KEY_PROD = "\"be1f4a8e17ed4a73b2171c3799ed98c7\""
+def ADIB_NYTIME_BASE_URI_PROD = "\"http://api.nytimes.com/svc/mostpopular/v2/\""
+def ADIB_NYTIME_SECTION_PATH_PROD = "\"all-sections\""
+
+def LOG_LEVEL_DEBUG = "LOG_LEVEL_DEBUG"
+
+
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.an.paginlibrary.sample"
+        minSdkVersion 14
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        release {
+            /* storeFile file("keys/myairtel.keystore")
+             storePassword "htp@123"
+             keyAlias "my airtel android"
+             keyPassword "htp@123"
+             v2SigningEnabled false*/
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            buildConfigField BOOLEAN, LOG_LEVEL_DEBUG, TRUE
+            applicationIdSuffix ".debug"
+            //Server settings
+            buildConfigField STRING, NYTIME_BASE_URI, ADIB_NYTIME_BASE_URI_STAGING
+            buildConfigField STRING, NYTIME_API_KEY, ADIB_NYTIME_API_KEY_STAGING
+            buildConfigField STRING, NYTIME_SECTION_PATH, ADIB_NYTIME_SECTION_PATH_STAGING
+            matchingFallbacks = ['debug']
+        }
+
+        release {
+            minifyEnabled true
+            buildConfigField BOOLEAN, LOG_LEVEL_DEBUG, FALSE
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        qaStaging {
+            manifestPlaceholders = [launcherIcon: "launcher_icon", appName: "qaAmProd"]
+            buildConfigField STRING, NYTIME_BASE_URI, ADIB_NYTIME_BASE_URI_STAGING
+            buildConfigField STRING, NYTIME_API_KEY, ADIB_NYTIME_API_KEY_STAGING
+            buildConfigField STRING, NYTIME_SECTION_PATH, ADIB_NYTIME_SECTION_PATH_STAGING
+        }
+
+        qaProd {
+            manifestPlaceholders = [launcherIcon: "launcher_icon", appName: "qaAmProd"]
+            buildConfigField STRING, NYTIME_BASE_URI, ADIB_NYTIME_BASE_URI_PROD
+            buildConfigField STRING, NYTIME_API_KEY, ADIB_NYTIME_API_KEY_PROD
+            buildConfigField STRING, NYTIME_SECTION_PATH, ADIB_NYTIME_SECTION_PATH_PROD
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+
+android {
+    dataBinding {
+        enabled = true
+    }
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:appcompat-v7:${support_version}"
+    implementation "com.android.support:recyclerview-v7:${support_version}"
+    implementation "com.android.support:support-v4:${support_version}"
+    implementation "com.android.support:cardview-v7:${support_version}"
+    implementation "com.android.support:design:${support_version}"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation "android.arch.paging:runtime:${paging_version}"
+    implementation "android.arch.lifecycle:extensions:${lifecycle_version}"
+
+    implementation 'com.an.customfontview:customfont:0.1.0'
+
+    implementation "com.squareup.retrofit2:retrofit:${retrofit_version}"
+    implementation "com.squareup.retrofit2:converter-gson:${retrofit_version}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${rx_java_version}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${retrofit_logging_version}"
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    //implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
+}

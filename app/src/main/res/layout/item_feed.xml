@@ -1,0 +1,186 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="FeedItemBinding" />
+
+    <LinearLayout
+        android:id="@+id/root_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_large"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_xsmall"
+        android:paddingTop="@dimen/padding"
+        android:paddingBottom="@dimen/padding_large">
+
+        <!--<LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <com.an.customfontview.CustomTextView
+                android:id="@+id/item_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/font_large"
+                android:text="TItle "
+                app:textFontPath="fonts/gt_medium.otf" />
+
+            <com.an.customfontview.CustomTextView
+                android:id="@+id/item_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_title"
+                android:layout_marginTop="@dimen/padding_small"
+                android:textColor="@color/secondary_text"
+                android:textSize="@dimen/font_small"
+                android:textStyle="bold"
+                android:text="Author"
+                app:textFontPath="fonts/montserrat_regular.otf" />
+
+        </LinearLayout>-->
+
+        <com.an.customfontview.CustomTextView
+            android:id="@+id/item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/font_large"
+            app:textFontPath="fonts/gt_medium.otf" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_xxsmall"
+            android:paddingTop="@dimen/padding">
+
+            <com.an.paginglibrary.sample.views.CircleImageView
+                android:id="@+id/item_profile_img"
+                android:layout_width="@dimen/detail_page_logo_size"
+                android:layout_height="@dimen/detail_page_logo_size"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="0dp"
+                android:src="@drawable/ic_placeholder" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
+                android:layout_marginRight="@dimen/margin"
+                android:layout_toStartOf="@+id/item_profile_img"
+                android:layout_toLeftOf="@+id/item_profile_img">
+
+                <com.an.customfontview.CustomTextView
+                    android:id="@+id/item_author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:maxLines="@integer/line_max_author"
+                    android:textColor="@color/color_line"
+                    android:textSize="@dimen/font_small"
+                    android:textStyle="bold"
+                    app:textFontPath="fonts/montserrat_regular.otf" />
+
+
+                <com.an.customfontview.CustomTextView
+                    android:id="@+id/item_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/item_author"
+                    android:layout_marginTop="@dimen/margin_xsmall"
+                    android:lineSpacingExtra="2dp"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/font_small"
+                    app:textFontPath="fonts/montserrat_regular.otf" />
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+
+        <com.an.customfontview.CustomTextView
+            android:id="@+id/item_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_xsmall"
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_marginRight="@dimen/margin"
+            android:lineSpacingExtra="2dp"
+            android:paddingLeft="@dimen/padding"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/font_xmedium"
+            android:visibility="gone"
+            app:textFontPath="fonts/gt_medium.otf" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_xxxlarge"
+            android:layout_marginBottom="@dimen/margin"
+            android:orientation="horizontal"
+            android:padding="@dimen/margin_xxsmall">
+
+
+            <com.an.customfontview.CustomTextView
+                android:id="@+id/item_date_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/margin"
+                android:drawableStart="@drawable/ic_layer_calendar"
+                android:drawableLeft="@drawable/ic_layer_calendar"
+                android:drawablePadding="@dimen/padding_small"
+                android:padding="@dimen/margin_small"
+                android:textColor="@color/secondary_text"
+                android:textSize="@dimen/font_small"
+                app:textFontPath="fonts/montserrat_regular.otf" />
+
+            <com.an.customfontview.CustomTextView
+                android:id="@+id/item_comments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/margin_xxlarge"
+                android:text="1.1K Comments"
+                android:textColor="@color/secondary_text"
+                android:textSize="@dimen/font_small"
+                app:textFontPath="fonts/montserrat_regular.otf"
+                />
+
+
+            <ImageView
+                android:id="@+id/item_shares"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/shine_btn_size"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/margin_large"
+                android:paddingStart="@dimen/margin_small"
+                android:paddingEnd="@dimen/margin_small"
+                android:src="@drawable/ic_share"
+                app:textFontPath="fonts/montserrat_regular.otf" />
+
+
+        </RelativeLayout>
+
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/margin_xsmall"
+            android:background="@color/color_line" />
+
+    </LinearLayout>
+</layout>
