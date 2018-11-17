@@ -1,4 +1,3 @@
-# PagingLibrary-Sample
-An open source app that is refactored to demo Paging Library from Android Jetpack
-
-The detailed implementation of the app can be found [here](https://medium.com/@anitaa_1990/8-steps-to-implement-paging-library-in-android-d02500f7fffe)
+# NYTIMES News Feed
+Following project is only for ADIB offical for code review.
+This project is based on the MVVM & relies on Paging Library from Android Jetpack & AAC.
