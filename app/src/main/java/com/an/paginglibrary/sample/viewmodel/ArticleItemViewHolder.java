@@ -8,6 +8,8 @@ import com.an.paginglibrary.sample.R;
 import com.an.paginglibrary.sample.databinding.FeedItemBinding;
 import com.an.paginglibrary.sample.model.Results;
 import com.an.paginglibrary.sample.utils.AppUtils;
+import com.an.paginglibrary.sample.utils.ImageLoader;
+import com.an.paginglibrary.sample.utils.ImageUtils;
 import com.an.paginglibrary.sample.utils.StringUtils;
 import com.squareup.picasso.Picasso;
 
@@ -35,6 +37,11 @@ public class ArticleItemViewHolder extends RecyclerView.ViewHolder {
         binding.itemAuthor.setText(author);
         binding.itemDescription.setText(article.getAbstractX());
         binding.itemDateTime.setText(AppUtils.getFormattedDate(article.getPublished_date()));
+
+
+        new ImageUtils(context, article.getMedia().get(0).getMediametadata(), binding.itemProfileImg);
+        //ImageLoader.loadImageRoundCallback(context, new ImageUtils(context, article.getMedia().get(0), binding.itemProfileImg));
+
         Picasso.get().load(article.getMedia().get(0).getMediametadata().get(0).getUrl()).resize(200, 200).into(binding.itemProfileImg);
 
         binding.itemShares.setOnClickListener(new View.OnClickListener() {

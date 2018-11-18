@@ -11,6 +11,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class AppController extends Application {
 
+    public static Context context;
     private RestApi restApi;
     private Scheduler scheduler;
 
@@ -25,6 +26,7 @@ public class AppController extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        context = this.getApplicationContext();
     }
 
     public RestApi getRestApi() {

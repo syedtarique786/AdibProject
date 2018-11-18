@@ -237,7 +237,7 @@ public class Results implements Parcelable {
             this.mediametadata = mediametadata;
         }
 
-        public static class MediametadataBean {
+        public static class MediametadataBean  {
             /**
              * url : https://static01.nyt.com/images/2018/11/10/us/10shooting/10shooting-square320-v3.jpg
              * format : square320

@@ -1,6 +1,9 @@
 package com.an.paginglibrary.sample.utils;
 
 import android.util.Log;
+
+import com.an.paginglibrary.sample.BuildConfig;
+
 import java.util.Locale;
 
 
@@ -186,27 +189,42 @@ public class LogUtils {
     public static class DebugLogger extends NoOpLogger {
         @Override
         public void verbose(String tag, String message, Throwable exception) {
-            log(Log.VERBOSE, tag, message, exception);
+            if (BuildConfig.DEBUG) {
+                log(Log.VERBOSE, tag, message, exception);
+            }
+
         }
 
         @Override
         public void debug(String tag, String message, Throwable exception) {
-            log(Log.DEBUG, tag, message, exception);
+            if (BuildConfig.DEBUG) {
+                log(Log.DEBUG, tag, message, exception);
+            }
+
         }
 
         @Override
         public void info(String tag, String message, Throwable exception) {
-            log(Log.INFO, tag, message, exception);
+            if (BuildConfig.DEBUG) {
+                log(Log.INFO, tag, message, exception);
+            }
+
         }
 
         @Override
         public void warn(String tag, String message, Throwable exception) {
-            log(Log.WARN, tag, message, exception);
+            if (BuildConfig.DEBUG) {
+                log(Log.WARN, tag, message, exception);
+            }
+
         }
 
         @Override
         public void error(String tag, String message, Throwable exception) {
-            log(Log.ERROR, tag, message, exception);
+            if (BuildConfig.DEBUG) {
+                log(Log.ERROR, tag, message, exception);
+            }
+
         }
     }
 

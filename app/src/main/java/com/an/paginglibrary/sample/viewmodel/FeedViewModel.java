@@ -42,7 +42,7 @@ public class FeedViewModel extends ViewModel {
 
         PagedList.Config pagedListConfig = (new PagedList.Config.Builder())
                         .setEnablePlaceholders(true)
-                        .setPrefetchDistance((BaseConstants.DEFAULT_PER_PAGE)/3)     // A value of 0 indicates that no list items will be loaded until they are specifically
+                        //.setPrefetchDistance((BaseConstants.DEFAULT_PER_PAGE)/3)     // A value of 0 indicates that no list items will be loaded until they are specifically
                         //.setInitialLoadSizeHint(BaseConstants.DEFAULT_PER_PAGE)    // Defines how many items to load when first load occurs.
                         .setPageSize(BaseConstants.DEFAULT_PER_PAGE)  // Defines the number of items loaded at once from the DataSource.
                         .build();

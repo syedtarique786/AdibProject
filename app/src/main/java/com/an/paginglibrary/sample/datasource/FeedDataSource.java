@@ -10,6 +10,7 @@ import com.an.paginglibrary.sample.BaseConstants;
 import com.an.paginglibrary.sample.BuildConfig;
 import com.an.paginglibrary.sample.model.Feed;
 import com.an.paginglibrary.sample.model.Results;
+import com.an.paginglibrary.sample.utils.LogUtils;
 import com.an.paginglibrary.sample.utils.NetworkState;
 
 import retrofit2.Call;
@@ -23,21 +24,21 @@ public class FeedDataSource extends PageKeyedDataSource<Long, Results> implement
 
     private AppController appController;
 
-    private MutableLiveData networkState;
-    private MutableLiveData initialLoading;
+    private MutableLiveData<NetworkState> networkState;
+    private MutableLiveData<NetworkState> initialLoading;
 
     public FeedDataSource(AppController appController) {
         this.appController = appController;
-        networkState = new MutableLiveData();
-        initialLoading = new MutableLiveData();
+        networkState = new MutableLiveData<>();
+        initialLoading = new MutableLiveData<NetworkState>();
     }
 
 
-    public MutableLiveData getNetworkState() {
+    public MutableLiveData<NetworkState> getNetworkState() {
         return networkState;
     }
 
-    public MutableLiveData getInitialLoading() {
+    public MutableLiveData<NetworkState> getInitialLoading() {
         return initialLoading;
     }
 
@@ -46,7 +47,7 @@ public class FeedDataSource extends PageKeyedDataSource<Long, Results> implement
 
         initialLoading.postValue(NetworkState.LOADING);
         networkState.postValue(NetworkState.LOADING);
-        Log.e(TAG, "Initial Loading Request" + appController.getRestApi().fetchFeed(BuildConfig.NYTIME_API_KEY).toString());
+        LogUtils.errorLog(TAG, "Initial Loading Request" + appController.getRestApi().fetchFeed(BuildConfig.NYTIME_API_KEY).toString());
 
         appController.getRestApi().fetchFeed(BuildConfig.NYTIME_API_KEY)
                 .enqueue(new Callback<Feed>() {
@@ -81,13 +82,13 @@ public class FeedDataSource extends PageKeyedDataSource<Long, Results> implement
     @Override
     public void loadBefore(@NonNull LoadParams<Long> params, @NonNull LoadCallback<Long, Results> callback) {
         //It's useful in cases where the data changes and we need to fetch our list starting from the middle.
-        Log.e("Load Before ", "" + params.requestedLoadSize + " " + callback.toString());
+        LogUtils.errorLog("Load Before ", "" + params.requestedLoadSize + " " + callback.toString());
     }
 
     @Override
     public void loadAfter(@NonNull LoadParams<Long> params, @NonNull LoadCallback<Long, Results> callback) {
 
-        Log.e(TAG, "Loading Rang " + params.key + " RequestedLoadSize " + params.requestedLoadSize);
+        LogUtils.errorLog(TAG, "Loading Rang " + params.key + " RequestedLoadSize " + params.requestedLoadSize);
         networkState.postValue(NetworkState.LOADING);
 
         appController.getRestApi().fetchFeed(BuildConfig.NYTIME_API_KEY).enqueue(new Callback<Feed>() {
@@ -118,7 +119,7 @@ public class FeedDataSource extends PageKeyedDataSource<Long, Results> implement
     }
 
     private void handleError(Retryable retryable, Throwable t, String errorMessage) {
-        Log.e("errorMessage", errorMessage);
+        LogUtils.errorLog("errorMessage", errorMessage);
         networkState.postValue(new NetworkState(NetworkState.Status.FAILED, t.getMessage()));
     }
 }

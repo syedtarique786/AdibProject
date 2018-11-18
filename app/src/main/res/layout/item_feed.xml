@@ -15,34 +15,6 @@
         android:paddingTop="@dimen/padding"
         android:paddingBottom="@dimen/padding_large">
 
-        <!--<LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:orientation="vertical">
-
-            <com.an.customfontview.CustomTextView
-                android:id="@+id/item_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/primary_text"
-                android:textSize="@dimen/font_large"
-                android:text="TItle "
-                app:textFontPath="fonts/gt_medium.otf" />
-
-            <com.an.customfontview.CustomTextView
-                android:id="@+id/item_author"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/item_title"
-                android:layout_marginTop="@dimen/padding_small"
-                android:textColor="@color/secondary_text"
-                android:textSize="@dimen/font_small"
-                android:textStyle="bold"
-                android:text="Author"
-                app:textFontPath="fonts/montserrat_regular.otf" />
-
-        </LinearLayout>-->
 
         <com.an.customfontview.CustomTextView
             android:id="@+id/item_title"
@@ -52,11 +24,18 @@
             android:textSize="@dimen/font_large"
             app:textFontPath="fonts/gt_medium.otf" />
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            >
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/margin_xxsmall"
+            android:layout_marginEnd="@dimen/margin_xlarge"
+            android:layout_marginRight="@dimen/margin_xlarge"
             android:paddingTop="@dimen/padding">
 
             <com.an.paginglibrary.sample.views.CircleImageView
@@ -104,6 +83,16 @@
 
             </RelativeLayout>
 
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="@dimen/margin_xlarge"
+            android:layout_height="@dimen/margin_xlarge"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/layer_list_arrow_icon" />
 
         </RelativeLayout>
 

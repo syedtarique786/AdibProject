@@ -99,16 +99,14 @@ public class FeedActivity extends AppCompatActivity {
          * of the PagedListAdapter class
          *
          * */
-        feedViewModel.getArticleLiveData().observe(this, new Observer<PagedList<Results>>() {
-            @Override
-            public void onChanged(@Nullable PagedList<Results> articles) {
-                adapter.submitList(articles);
-                binding.swipeRefreshLayout.setRefreshing(false);
-            }
+        //feedViewModel.getArticleLiveData().observe(this, new Observer<PagedList<Results>>() {
+        feedViewModel.getArticleLiveData().observe(this, articles -> {
+            adapter.submitList(articles);
+            binding.swipeRefreshLayout.setRefreshing(false);
         });
-        feedViewModel.getArticleLiveData().observe(this, pagedList -> {
+       /* feedViewModel.getArticleLiveData().observe(this, pagedList -> {
             adapter.submitList(pagedList);
-        });
+        });*/
 
         /*
          * Step 5: When a new page is available, we call submitList() method
