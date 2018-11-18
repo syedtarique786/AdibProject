@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PagingLibrary-Sample</string>
+    <string name="app_name">NYTIMES-Feeds</string>
 
     <string name="btn_like">Like</string>
     <string name="btn_comment">Comment</string>
